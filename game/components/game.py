@@ -54,7 +54,7 @@ class Game:
 
 
         # dibujamos el objeto en pantalla
-        self.screen.blit(self.spaceship.image, self.spaceship.image_rect)
+        self.spaceship.draw(self.screen)
 
         pygame.display.update()
         pygame.display.flip()
