@@ -6,9 +6,6 @@ from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, F
 from game.components.spaceship import SpaceShip
 from game.components.enemy import Enemy_1
 
-pos_X = random.randint(40, (SCREEN_WIDTH - 40))
-pos_Y = 0
-
 # Game tiene un "Spaceship" - Por lo general esto es iniciliazar un objeto Spaceship en el __init__
 class Game:
     def __init__(self):
@@ -27,8 +24,12 @@ class Game:
 
         # Game tiene un "Enemy"
         self.enemy = []
-        for x in range(5):
-            self.enemy.append(Enemy_1(pos_X, pos_Y))
+
+
+    def spawn(self):
+        x = random.randint(1, 20)
+        if x in range(1, 3):
+            self.enemy.append(Enemy_1(random.randint(40, (SCREEN_WIDTH - 40)), 0))
 
 
     def run(self):
@@ -55,6 +56,7 @@ class Game:
     def update(self):
         # pass
         self.spaceship.update()
+        self.spawn()
         for obj in self.enemy:
             obj.update()
 
