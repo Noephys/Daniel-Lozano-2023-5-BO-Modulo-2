@@ -1,8 +1,13 @@
 import pygame
+import random
 
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 
 from game.components.spaceship import SpaceShip
+from game.components.enemy import Enemy_1
+
+pos_X = random.randint(40, (SCREEN_WIDTH - 40))
+pos_Y = 0
 
 # Game tiene un "Spaceship" - Por lo general esto es iniciliazar un objeto Spaceship en el __init__
 class Game:
@@ -20,6 +25,10 @@ class Game:
         # Game tiene un "Spaceship"
         self.spaceship = SpaceShip()
 
+        # Game tiene un "Enemy"
+        self.enemy = []
+        for x in range(5):
+            self.enemy.append(Enemy_1(pos_X, pos_Y))
 
 
     def run(self):
@@ -46,6 +55,8 @@ class Game:
     def update(self):
         # pass
         self.spaceship.update()
+        for obj in self.enemy:
+            obj.update()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -55,6 +66,9 @@ class Game:
 
         # dibujamos el objeto en pantalla
         self.spaceship.draw(self.screen)
+
+        for obj in self.enemy:
+            obj.draw(self.screen)
 
         pygame.display.update()
         pygame.display.flip()
