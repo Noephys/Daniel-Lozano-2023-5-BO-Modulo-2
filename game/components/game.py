@@ -5,6 +5,11 @@ from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, F
 
 from game.components.spaceship import SpaceShip
 from game.components.enemy import Enemy_1
+from game.components.bullet import Bullet
+
+all_sprites = pygame.sprite.Group()
+enemy_list = pygame.sprite.Group()
+bullet_list = pygame.sprite.Group()
 
 # Game tiene un "Spaceship" - Por lo general esto es iniciliazar un objeto Spaceship en el __init__
 class Game:
@@ -21,20 +26,25 @@ class Game:
 
         # Game tiene un "Spaceship"
         self.spaceship = SpaceShip()
+        all_sprites.add(self.spaceship)
 
-        # Game tiene un "Enemy"
-        self.enemy = []
+        for x in range(20):
+            self.spawn()
 
+    def shoot(self):
+        bullet = Bullet((self.spaceship.rect.centerx), (self.spaceship.rect.top))
+        all_sprites.add(bullet)
+        bullet_list.add(bullet)
+
+    def hit(self):
+        hits = pygame.sprite.groupcollide(enemy_list, bullet_list, True, True)
+        for hit in hits:
+            self.spawn()
 
     def spawn(self):
-        x = random.randint(1, 20)
-        if x in range(1, 3):
-            self.enemy.append(Enemy_1(random.randint(40, (SCREEN_WIDTH - 40)), 0))
-    
-    def remove(self):
-        for obj in self.enemy:
-            if obj.move_y():
-                self.enemy.remove(obj)
+        self.enemy = Enemy_1(random.randrange(SCREEN_WIDTH - 40), random.randrange(-100, -40))
+        all_sprites.add(self.enemy)
+        enemy_list.add(self.enemy)
 
     def run(self):
         # Game loop: events - update - draw
@@ -56,14 +66,15 @@ class Game:
             # si el "event" type es igual a pygame.QUIT entonces cambiamos playing a False
             if event.type == pygame.QUIT:
                 self.playing = False
+            
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    self.shoot()
 
     def update(self):
         # pass
-        self.spaceship.update()
-        self.spawn()
-        self.remove()
-        for obj in self.enemy:
-            obj.update()
+        all_sprites.update()
+        self.hit()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -72,10 +83,7 @@ class Game:
 
 
         # dibujamos el objeto en pantalla
-        self.spaceship.draw(self.screen)
-
-        for obj in self.enemy:
-            obj.draw(self.screen)
+        all_sprites.draw(self.screen)
 
         pygame.display.update()
         pygame.display.flip()
