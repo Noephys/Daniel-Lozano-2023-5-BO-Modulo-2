@@ -30,7 +30,11 @@ class Game:
         x = random.randint(1, 20)
         if x in range(1, 3):
             self.enemy.append(Enemy_1(random.randint(40, (SCREEN_WIDTH - 40)), 0))
-
+    
+    def remove(self):
+        for obj in self.enemy:
+            if obj.move_y():
+                self.enemy.remove(obj)
 
     def run(self):
         # Game loop: events - update - draw
@@ -57,6 +61,7 @@ class Game:
         # pass
         self.spaceship.update()
         self.spawn()
+        self.remove()
         for obj in self.enemy:
             obj.update()
 

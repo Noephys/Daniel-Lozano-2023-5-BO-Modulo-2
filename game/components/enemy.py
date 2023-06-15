@@ -11,22 +11,29 @@ class Enemy_1(Sprite):
         self.image_rect = self.image.get_rect()
         self.image_rect.x = self.image_size[0]
         self.image_rect.y = self.image_size[1]
-        self.enemy_speed = 5
-        self.speed_x = 5
+        self.enemy_speed = 2
+        self.speed_x = 10
         self.pos_X = pos_X
         self.pos_Y = pos_Y
 
     def update(self):
+        self.move_y()
+        self.move_x()
+
+    def move_y(self):
         self.pos_Y += self.enemy_speed
         if self.pos_Y >= SCREEN_HEIGHT:
             self.pos_Y = SCREEN_HEIGHT
             self.pos_X = (random.randint(20,SCREEN_WIDTH - 40))
+            return True
 
+    def move_x(self):
         self.pos_X += self.speed_x
         if self.pos_X < 0:
             self.speed_x += 1
         if self.pos_X > SCREEN_WIDTH - 40:
             self.speed_x -= 1
+        
 
     def draw(self, screen):
         screen.blit(self.image, (self.pos_X, self.pos_Y))
