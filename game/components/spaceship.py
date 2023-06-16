@@ -1,16 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
-
 from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT
 
-# casi Todo en pygame es un objeto
-# Un personaje en mi juego es un objeto (instancia de algo)
-# La nave (spaceship) es un personaje => necesito una clase
-
-
-# SpaceShip es una clase derivada (hija) de Sprite
-
-# spaceship tiene una "imagen"
 class SpaceShip(Sprite):
     
     def __init__(self):
@@ -21,7 +12,6 @@ class SpaceShip(Sprite):
         self.rect.centerx = SCREEN_WIDTH // 2
         self.rect.bottom = SCREEN_HEIGHT - 10
         self.ship_speed = 0
-
 
     def update(self):
         self.ship_speed = 0

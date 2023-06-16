@@ -23,3 +23,4 @@ class Enemy_1(Sprite):
             self.rect.x = random.randrange(SCREEN_WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
             self.speed_y = random.randrange(1, 10)
+            self.speed_x = random.randrange(-5, 5)
