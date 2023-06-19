@@ -43,28 +43,6 @@ ENEMY_12 = pygame.image.load(os.path.join(DIR, "Enemy/enemy_12.png"))
 ENEMY_IMAGES = [ENEMY_1, ENEMY_2, ENEMY_3, ENEMY_4, ENEMY_5, ENEMY_6,
                 ENEMY_7, ENEMY_8, ENEMY_9, ENEMY_10, ENEMY_11, ENEMY_12]
 
-PLAYER_EXPLOSION_0 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(1).png"))
-PLAYER_EXPLOSION_1 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(2).png"))
-PLAYER_EXPLOSION_2 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(3).png"))
-PLAYER_EXPLOSION_3 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(4).png"))
-PLAYER_EXPLOSION_4 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(5).png"))
-PLAYER_EXPLOSION_5 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(6).png"))
-PLAYER_EXPLOSION_6 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(7).png"))
-PLAYER_EXPLOSION_7 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(8).png"))
-PLAYER_EXPLOSION_8 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(9).png"))
-PLAYER_EXPLOSION_9 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(10).png"))
-PLAYER_EXPLOSION_10 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(11).png"))
-PLAYER_EXPLOSION_11 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(12).png"))
-PLAYER_EXPLOSION_12 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(13).png"))
-PLAYER_EXPLOSION_13 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(14).png"))
-PLAYER_EXPLOSION_14 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(15).png"))
-PLAYER_EXPLOSION_15 = pygame.image.load(os.path.join(DIR, "Player_Explosion/Player_Explosion_(16).png"))
-
-PLAYER_EXPLOSION_ANIM = [PLAYER_EXPLOSION_0, PLAYER_EXPLOSION_1, PLAYER_EXPLOSION_2, PLAYER_EXPLOSION_3, PLAYER_EXPLOSION_4,
-                         PLAYER_EXPLOSION_5, PLAYER_EXPLOSION_6, PLAYER_EXPLOSION_7, PLAYER_EXPLOSION_8, PLAYER_EXPLOSION_9,
-                         PLAYER_EXPLOSION_10, PLAYER_EXPLOSION_11, PLAYER_EXPLOSION_12, PLAYER_EXPLOSION_13, PLAYER_EXPLOSION_14, 
-                         PLAYER_EXPLOSION_15]
-
 EXPLOSION_0 = pygame.image.load(os.path.join(DIR, "Explosion/explosion-0.png"))
 EXPLOSION_1 = pygame.image.load(os.path.join(DIR, "Explosion/explosion-1.png"))
 EXPLOSION_2 = pygame.image.load(os.path.join(DIR, "Explosion/explosion-2.png"))
@@ -96,4 +74,9 @@ PARTICLES = pygame.image.load(os.path.join(DIR, "Other/particles.png"))
 PLAYER_LASER_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/player_laser_shot.ogg"))
 ENEMY_LASER_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/enemy_laser_shot.ogg"))
 ENEMY_DESTROY_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/explosion.wav"))
+FINALSOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/risa-malevola.wav"))
+PAUSE_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/Pause_sound.ogg"))
+START_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/Star_sound.ogg"))
+LOSE_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/Lose_sound.ogg"))
+WIN_SOUND = pygame.mixer.Sound(os.path.join(DIR, "Sound/Win_sound.ogg"))
 BG_MUSIC = os.path.join(DIR, "Sound/Evangelion-Opening.ogg")

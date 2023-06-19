@@ -1,7 +1,7 @@
 import pygame
 import random
 
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, TERMINAL, PLAYER_LASER_SOUND, ENEMY_LASER_SOUND, ENEMY_DESTROY_SOUND, BG_MUSIC, GAMEOVER, YOUWIN
+from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, TERMINAL, PLAYER_LASER_SOUND, ENEMY_LASER_SOUND, ENEMY_DESTROY_SOUND, FINALSOUND, LOSE_SOUND, WIN_SOUND, PAUSE_SOUND, START_SOUND, BG_MUSIC, GAMEOVER, YOUWIN
 
 from game.components.spaceship import SpaceShip
 from game.components.enemy import Enemy_1
@@ -25,15 +25,13 @@ enemy_list = pygame.sprite.Group()
 bullet_list = pygame.sprite.Group()
 bullet_enemy_list = pygame.sprite.Group()
 
-pygame.mixer.music.load(BG_MUSIC)
-pygame.mixer.music.play(loops=-1)
 
 class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
-        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))#, pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.FULLSCREEN)
         self.clock = pygame.time.Clock()
         self.game_speed = 10
         self.x_pos_bg = 0
@@ -66,6 +64,8 @@ class Game:
         for x in range(10):
             self.spawn_enemy()
 
+        pygame.mixer.music.load(BG_MUSIC)
+        pygame.mixer.music.play(loops=-1)
 ## ------------------- SPAWNS ----------------------
 
     def spawn_enemy(self):
@@ -130,6 +130,8 @@ class Game:
                 self.additional_hearts -= 1
                 self.spaceship.life -= 1
                 if self.spaceship.life == 0:
+                    pygame.mixer.music.set_volume(0)
+                    FINALSOUND.play()
                     self.game_over = True
 
     def powerup_shield_hit(self):
@@ -264,6 +266,11 @@ class Game:
 ## ------------------- MENUS ----------------------  
 
     def show_start_menu(self):
+        START_SOUND.play()
+        PAUSE_SOUND.stop()
+        LOSE_SOUND.stop()
+        WIN_SOUND.stop()
+        pygame.mixer.music.set_volume(0)
         self.draw_background()
         self.draw_text(self.screen, TERMINAL, "SpaceShip", (0, 255, 122), 45, (SCREEN_WIDTH//2), (SCREEN_HEIGHT//4))
         self.draw_text(self.screen, TERMINAL, "The spaceship moves with the keys (A , D) or (<- , ->), and shoots with (SPACE)", (255, 255, 255), 20, (SCREEN_WIDTH//2), (SCREEN_HEIGHT//2))
@@ -278,6 +285,11 @@ class Game:
                     waiting = False
     
     def show_go_menu(self):
+        pygame.mixer.music.set_volume(0)
+        START_SOUND.stop()
+        PAUSE_SOUND.stop()
+        LOSE_SOUND.play()
+        WIN_SOUND.stop()
         self.game_try += 1
         self.spaceship.life = 5
         if self.player_score > self.max_score:
@@ -305,6 +317,11 @@ class Game:
                         waiting = False
     
     def show_pause_menu(self):
+        pygame.mixer.music.set_volume(0)
+        START_SOUND.stop()
+        PAUSE_SOUND.play()
+        LOSE_SOUND.stop()
+        WIN_SOUND.stop()
         self.draw_text(self.screen, TERMINAL, "PAUSE", (0, 255, 122), 45, (SCREEN_WIDTH//2), (SCREEN_HEIGHT//4))
         self.draw_text(self.screen, TERMINAL, "Press 'ESC' to continue", (255, 255, 255), 24, (SCREEN_WIDTH//2), (SCREEN_HEIGHT//2))
         pygame.display.flip()
@@ -318,6 +335,11 @@ class Game:
                         waiting = False
     
     def show_game_menu(self):
+        START_SOUND.stop()
+        PAUSE_SOUND.stop()
+        LOSE_SOUND.stop()
+        WIN_SOUND.stop()
+        pygame.mixer.music.set_volume(0.5)
         self.handle_events()
         self.handle_enemy_events()
         self.handle_spawn_powerup_heart()
@@ -328,6 +350,11 @@ class Game:
 
 
     def show_win_menu(self):
+        pygame.mixer.music.set_volume(0)
+        START_SOUND.stop()
+        PAUSE_SOUND.stop()
+        LOSE_SOUND.stop()
+        WIN_SOUND.play()
         self.game_try += 1
         self.spaceship.life = 5
         if self.player_score > self.max_score:
