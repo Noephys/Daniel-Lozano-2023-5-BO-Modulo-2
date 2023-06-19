@@ -11,7 +11,7 @@ class Bullet(Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = x
         self.rect.y = y
-        self.bullet_speed = -10
+        self.bullet_speed = -5
     
     def update(self):
         self.rect.y += self.bullet_speed

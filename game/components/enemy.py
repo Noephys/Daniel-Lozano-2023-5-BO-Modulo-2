@@ -2,16 +2,16 @@ import pygame
 import random
 
 from pygame.sprite import Sprite
-from game.utils.constants import ENEMY_1, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import ENEMY_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class Enemy_1(Sprite):
-    def __init__(self, pos_X, pos_Y):
+    def __init__(self, pos_x, pos_y):
         super().__init__()
         self.image_size = (40, 60)
-        self.image = pygame.transform.scale(ENEMY_1, self.image_size)
+        self.image = pygame.transform.scale((random.choice(ENEMY_IMAGES)), self.image_size)
         self.rect = self.image.get_rect()
-        self.rect.x = pos_X
-        self.rect.y = pos_Y
+        self.rect.x = pos_x
+        self.rect.y = pos_y
         self.speed_y = random.randrange(1, 10)
         self.speed_x = random.randrange(-5, 5)
 
